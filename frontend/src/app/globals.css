@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #047857; /* Emerald typical Ramadan */
+  --primary-foreground: #ffffff;
+  --secondary: #e5e7eb;
+  --secondary-foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #171717;
+  
+  /* Aesthetic Modes */
+  --theme-lailatul-qadr: linear-gradient(to bottom, #1e1b4b, #111827);
+  --text-lailatul-qadr: #fef08a; /* Gold stars */
+  
+  --theme-senja: linear-gradient(to bottom, #c2410c, #7e22ce);
+  --text-senja: #fff7ed;
+  
+  --theme-hijau: linear-gradient(to bottom, #064e3b, #0f766e);
+  --text-hijau: #ccfbf1;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #10b981;
+  --primary-foreground: #ffffff;
+  --secondary: #262626;
+  --secondary-foreground: #d1d5db;
+  --card: #1f2937;
+  --card-foreground: #f3f4f6;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.aesthetic-card {
+  transition: transform 0.3s ease;
+}
+
+.aesthetic-card:hover {
+  transform: translateY(-2px);
+}

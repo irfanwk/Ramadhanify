@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model UserSession {
+  id               String   @id @default(uuid())
+  ipHash           String   @unique
+  generationsCount Int      @default(0)
+  lastGeneratedAt  DateTime @default(now())
+  createdAt        DateTime @default(now())
+  
+  contents         GeneratedContent[]
+}
+
+model GeneratedContent {
+  id             String   @id @default(uuid())
+  sessionId      String
+  contentType    ContentType
+  rawInput       String?     // Jika user menggunakan custom joke
+  optimizedText  String
+  targetImageUrl String?
+  isShared       Boolean     @default(false)
+  createdAt      DateTime    @default(now())
+
+  session        UserSession @relation(fields: [sessionId], references: [id])
+}
+
+enum ContentType {
+  MEME
+  GREETING
+}
