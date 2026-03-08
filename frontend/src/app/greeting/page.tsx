@@ -88,8 +88,9 @@ export default function GreetingGeneratorPage() {
             }
 
             setResult(json.data);
-        } catch (err: any) {
-            setError(err.message || "Terjadi kesalahan. Coba lagi.");
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : "Terjadi kesalahan. Coba lagi.";
+            setError(errorMessage);
         } finally {
             setIsLoading(false);
         }

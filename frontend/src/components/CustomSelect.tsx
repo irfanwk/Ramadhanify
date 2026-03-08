@@ -50,7 +50,7 @@ export function CustomSelect({ options, value, onChange, placeholder, className 
 
             {isOpen && (
                 <div className="absolute z-50 w-full mt-2 bg-background border-4 border-border shadow-[4px_4px_0px_var(--hard-shadow)] max-h-60 overflow-y-auto">
-                    {options.map((option, index) => (
+                    {options.map((option) => (
                         <button
                             key={option.value}
                             type="button"
