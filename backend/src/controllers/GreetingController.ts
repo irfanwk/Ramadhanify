@@ -8,7 +8,12 @@ export class GreetingController extends BaseController {
         try {
             const data: GenerateGreetingRequest = req.body;
 
-            const greetingText = await qwenService.generateGreeting(data.recipientName, data.relationship, data.tone);
+            const greetingText = await qwenService.generateGreeting(
+                data.recipientName,
+                data.relationship,
+                data.tone,
+                data.customMessage,
+            );
 
             this.handleSuccess(res, {
                 greetingText,

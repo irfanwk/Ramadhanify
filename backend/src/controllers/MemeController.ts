@@ -8,13 +8,20 @@ export class MemeController extends BaseController {
         try {
             const data: GenerateMemeRequest = req.body;
 
-            const optimizedText = await qwenService.generateMemeText(data.category, data.userJoke);
-            const imageUrl = await qwenService.generateMemeImage(optimizedText);
+            // Step 1: LLM builds joke text + image prompt
+            const { displayText, imagePrompt } = await qwenService.generateMemeText(
+                data.genre,
+                data.userJoke
+            );
+
+            // Step 2: Wanx generates the image (async polling, ~15-30s)
+            const imageUrl = await qwenService.generateMemeImage(imagePrompt, data.style);
 
             this.handleSuccess(res, {
                 imageUrl,
-                contentText: optimizedText,
-                metadata: { style: data.style }
+                contentText: displayText,
+                imagePrompt, // useful for debugging
+                metadata: { style: data.style, genre: data.genre },
             });
         } catch (error) {
             this.handleError(error, res, 'MemeController.generate');

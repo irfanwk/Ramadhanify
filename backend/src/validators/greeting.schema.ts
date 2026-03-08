@@ -5,6 +5,7 @@ export const generateGreetingSchema = z.object({
     relationship: z.string().min(1, "Relationship is required"),
     tone: z.string().min(1, "Tone is required"),
     visualTheme: z.string().min(1, "Visual theme is required"),
+    customMessage: z.string().optional(),
 });
 
 export type GenerateGreetingRequest = z.infer<typeof generateGreetingSchema>;

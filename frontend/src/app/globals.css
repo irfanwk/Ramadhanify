@@ -3,48 +3,72 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  /* Light Mode Variables */
+  --background: #FFF7ED;
+  /* Warm Sand */
   --foreground: #171717;
-  --primary: #047857; /* Emerald typical Ramadan */
-  --primary-foreground: #ffffff;
-  --secondary: #e5e7eb;
-  --secondary-foreground: #1f2937;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  
-  /* Aesthetic Modes */
+  /* Slate 900 */
+  --primary: #047857;
+  /* Deep Emerald */
+  --primary-foreground: #FFF7ED;
+  --accent: #EAB308;
+  /* Yellow Gold */
+  --accent-foreground: #171717;
+  --card: #FFFFFF;
+  --border-color: #171717;
+  --hard-shadow: #171717;
+
+  /* Aesthetic Presets */
   --theme-lailatul-qadr: linear-gradient(to bottom, #1e1b4b, #111827);
-  --text-lailatul-qadr: #fef08a; /* Gold stars */
-  
+  --text-lailatul-qadr: #fef08a;
+
   --theme-senja: linear-gradient(to bottom, #c2410c, #7e22ce);
   --text-senja: #fff7ed;
-  
+
   --theme-hijau: linear-gradient(to bottom, #064e3b, #0f766e);
   --text-hijau: #ccfbf1;
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: #10b981;
-  --primary-foreground: #ffffff;
-  --secondary: #262626;
-  --secondary-foreground: #d1d5db;
-  --card: #1f2937;
-  --card-foreground: #f3f4f6;
+  /* Dark Mode Variables */
+  --background: #0A0A0A;
+  /* Midnight Charcoal */
+  --foreground: #FFF7ED;
+  --primary: #10B981;
+  /* Brighter Emerald for Dark Mode */
+  --primary-foreground: #0A0A0A;
+  --accent: #FDE047;
+  /* Brighter Yellow */
+  --accent-foreground: #0A0A0A;
+  --card: #171717;
+  --border-color: #3F3F46;
+  /* Lighter border for dark mode readability */
+  --hard-shadow: #E5E7EB;
+  /* Softer hard shadow for dark mode or keep it dark? In dark mode, hard shadows are often lighter or inverted */
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+@layer base {
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  *,
+  ::before,
+  ::after {
+    @apply transition-colors duration-500 ease-out;
+  }
 }
 
-.aesthetic-card {
-  transition: transform 0.3s ease;
-}
+@layer utilities {
+  .brutalist-card {
+    @apply rounded-xl border-4 border-border shadow-[6px_6px_0px_var(--hard-shadow)] transition-transform duration-200;
+  }
 
-.aesthetic-card:hover {
-  transform: translateY(-2px);
+  .brutalist-card:hover {
+    @apply -translate-x-1 -translate-y-1 shadow-[10px_10px_0px_var(--hard-shadow)];
+  }
+
+  .brutalist-button {
+    @apply font-display font-bold uppercase tracking-wider rounded-lg border-2 border-border shadow-[3px_3px_0px_var(--hard-shadow)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all;
+  }
 }
