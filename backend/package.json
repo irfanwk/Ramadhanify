@@ -8,6 +8,7 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "start": "node dist/server.js",
+    "start:migrate": "npx prisma db push && node dist/server.js",
     "dev": "tsx watch src/server.ts",
     "db:push": "npx prisma db push"
   },
